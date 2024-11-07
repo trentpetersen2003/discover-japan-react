@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/discover-japan-react/static/css/main.d68c73af.css",
+    "main.js": "/discover-japan-react/static/js/main.fe736375.js",
+    "static/media/festival.jpg": "/discover-japan-react/static/media/festival.532ef6fdbff2dc220d59.jpg",
+    "static/media/tanabata_festival.jpg": "/discover-japan-react/static/media/tanabata_festival.c33cd65caa56ed1e008b.jpg",
+    "static/media/gion_matsuri.jpg": "/discover-japan-react/static/media/gion_matsuri.c2295d236d97ef0e3ace.jpg",
+    "static/media/cuisine.jpg": "/discover-japan-react/static/media/cuisine.45aa436b8697c9e1b808.jpg",
+    "static/media/obon_festival.jpg": "/discover-japan-react/static/media/obon_festival.33febf6c6d084589a940.jpg",
+    "static/media/setsubun.jpg": "/discover-japan-react/static/media/setsubun.2122bf4b39c12097228e.jpg",
+    "static/media/cherry_blossom_festival.jpg": "/discover-japan-react/static/media/cherry_blossom_festival.761823bd7c51adffae58.jpg",
+    "static/media/sapporo_snow_festival.jpg": "/discover-japan-react/static/media/sapporo_snow_festival.73f4238283b7ed92ef7e.jpg",
+    "static/media/sushi_rolls.jpg": "/discover-japan-react/static/media/sushi_rolls.185f7a6d9b1d00385fa7.jpg",
+    "static/media/ramen.jpg": "/discover-japan-react/static/media/ramen.33aaadbff1353ce7a460.jpg",
+    "static/media/tempura.jpg": "/discover-japan-react/static/media/tempura.23aedaa77063f7436dbd.jpg",
+    "static/media/yakitori.jpg": "/discover-japan-react/static/media/yakitori.b12cfda07194be3b5224.jpg",
+    "static/media/takoyaki.jpg": "/discover-japan-react/static/media/takoyaki.4560e81d7296e1a5caec.jpg",
+    "static/media/mochi.jpg": "/discover-japan-react/static/media/mochi.7f5d7cdd89e46b52973f.jpg",
+    "static/media/okonomiyaki.jpg": "/discover-japan-react/static/media/okonomiyaki.f66c86670b27e02ba7ac.jpg",
+    "static/media/japan_landscape.jpg": "/discover-japan-react/static/media/japan_landscape.ff81241de8088bb37ca6.jpg",
+    "static/media/miso_soup.jpg": "/discover-japan-react/static/media/miso_soup.9bfca50f4672dd9a5c48.jpg",
+    "static/media/fushimi_inari.jpg": "/discover-japan-react/static/media/fushimi_inari.a263841d2bc92890d176.jpg",
+    "static/media/tokyo.jpg": "/discover-japan-react/static/media/tokyo.06c7d2fcfc5b03df7eb0.jpg",
+    "static/media/budgeting.jpg": "/discover-japan-react/static/media/budgeting.c104dad27e4f112801b6.jpg",
+    "static/media/mount_fuji.jpg": "/discover-japan-react/static/media/mount_fuji.76b3f4bd1c34dba50afd.jpg",
+    "static/media/sushi.jpg": "/discover-japan-react/static/media/sushi.a55d2643944c1bf34434.jpg",
+    "static/media/etiquette.jpg": "/discover-japan-react/static/media/etiquette.2bf1bb7b0ca871284141.jpg",
+    "static/media/restaurant.jpg": "/discover-japan-react/static/media/restaurant.af2c51ae3e4c6df2387a.jpg",
+    "static/media/transportation.jpg": "/discover-japan-react/static/media/transportation.2652924f482b8b60e02f.jpg",
+    "static/media/profile_icon.jpg": "/discover-japan-react/static/media/profile_icon.c55f07e962e32c99b8c8.jpg",
+    "static/media/cherry_blossom.jpg": "/discover-japan-react/static/media/cherry_blossom.278c7ea6d049458429fe.jpg",
+    "index.html": "/discover-japan-react/index.html",
+    "main.d68c73af.css.map": "/discover-japan-react/static/css/main.d68c73af.css.map",
+    "main.fe736375.js.map": "/discover-japan-react/static/js/main.fe736375.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d68c73af.css",
+    "static/js/main.fe736375.js"
+  ]
+}
