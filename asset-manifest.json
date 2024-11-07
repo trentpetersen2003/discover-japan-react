@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/discover-japan-react/static/css/main.d68c73af.css",
-    "main.js": "/discover-japan-react/static/js/main.fe736375.js",
+    "main.js": "/discover-japan-react/static/js/main.7a6f0373.js",
     "static/media/festival.jpg": "/discover-japan-react/static/media/festival.532ef6fdbff2dc220d59.jpg",
     "static/media/tanabata_festival.jpg": "/discover-japan-react/static/media/tanabata_festival.c33cd65caa56ed1e008b.jpg",
     "static/media/gion_matsuri.jpg": "/discover-japan-react/static/media/gion_matsuri.c2295d236d97ef0e3ace.jpg",
@@ -31,10 +31,10 @@
     "static/media/cherry_blossom.jpg": "/discover-japan-react/static/media/cherry_blossom.278c7ea6d049458429fe.jpg",
     "index.html": "/discover-japan-react/index.html",
     "main.d68c73af.css.map": "/discover-japan-react/static/css/main.d68c73af.css.map",
-    "main.fe736375.js.map": "/discover-japan-react/static/js/main.fe736375.js.map"
+    "main.7a6f0373.js.map": "/discover-japan-react/static/js/main.7a6f0373.js.map"
   },
   "entrypoints": [
     "static/css/main.d68c73af.css",
-    "static/js/main.fe736375.js"
+    "static/js/main.7a6f0373.js"
   ]
 }
