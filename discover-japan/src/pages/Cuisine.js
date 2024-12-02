@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
-import RecipeBook from '../components/RecipeBook';
+import RecipeList from '../components/RecipeList';
 import japaneseCuisine from '../assets/images/cuisine.jpg';
 import restaurantsImg from '../assets/images/restaurant.jpg';
 import dishesImg from '../assets/images/sushi.jpg';
@@ -179,7 +179,7 @@ function Cuisine() {
                 <li class="recipe-book">Okonomiyaki - A savory Japanese pancake with various toppings.</li>
             </ul>
         </section>
-        <RecipeBook />
+        <RecipeList />
         </section>
         </main>
         </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import japanLandscape from '../assets/images/japan_landscape.jpg';
+import ContactForm from '../components/ContactMe';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
                 destinations, cultural experiences, and local cuisine, ensuring that you make 
                 the most of your trip.
             </p>
+            <ContactForm />
       </main>
     </>
   );
