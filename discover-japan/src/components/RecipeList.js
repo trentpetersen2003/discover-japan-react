@@ -42,7 +42,11 @@ const RecipeList = () => {
         {recipes.map((recipe) => (
           <div className="recipe-item" key={recipe._id}>
             <img
-              src={`https://japanese-recipes-server.onrender.com${recipe.main_image}`} // Use Render URL for images
+              src={
+                recipe.main_image.startsWith("http") || recipe.main_image.startsWith("data:image")
+                ? recipe.main_image // Use as is if it's a valid URL or base64 image
+                : `https://japanese-recipes-server.onrender.com${recipe.main_image}` // Prepend server URL for relative paths
+              }
               alt={recipe.name}
               className="recipe-item-image"
             />
