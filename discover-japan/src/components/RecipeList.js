@@ -11,7 +11,7 @@ const RecipeList = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch("https://japanese-recipes-server.onrender.com");
+        const response = await fetch("https://japanese-recipes-server.onrender.com/api/recipes");
         if (!response.ok) {
           throw new Error("Failed to fetch recipes");
         }
