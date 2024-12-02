@@ -25,7 +25,7 @@ const AddRecipeForm = ({ onRecipeAdded }) => {
 
     try {
       // Send POST request to the server
-      const response = await fetch("http://localhost:3001/api/recipes", {
+      const response = await fetch("https://japanese-recipes-server.onrender.com/api/recipes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
