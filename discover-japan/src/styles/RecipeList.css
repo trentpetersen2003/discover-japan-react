@@ -53,4 +53,73 @@
   .recipe-details p {
     margin: 5px 0;
     color: #555;
+  }
+
+  .form-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .add-recipe-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .form-group {
+    display: contents; /* Let the grid manage layout */
+  }
+  
+  label {
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #333;
+    outline: none;
+  }
+  
+  .submit-btn {
+    grid-column: 1 / -1;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #555;
   }  

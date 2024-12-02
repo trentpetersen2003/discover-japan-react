@@ -1,57 +1,39 @@
 import React, { useState, useEffect } from "react";
-import recipesData from "../assets/japanese_recipes.json";
+import AddRecipeForm from "./AddRecipeForm";
 import "../styles/RecipeList.css";
-
-// Import images
-import sushiRollsImg from "../assets/images/sushi_rolls.jpg";
-import ramenImg from "../assets/images/ramen.jpg";
-import tempuraImg from "../assets/images/tempura.jpg";
-import misoSoupImg from "../assets/images/miso_soup.jpg";
-import okonomiyakiImg from "../assets/images/okonomiyaki.jpg";
-import yakitoriImg from "../assets/images/yakitori.jpg";
-import takoyakiImg from "../assets/images/takoyaki.jpg";
-import mochiImg from "../assets/images/mochi.jpg";
 
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch recipes from the server on component mount
   useEffect(() => {
-    // Map the images to the JSON data
-    const updatedRecipes = recipesData.map((recipe) => {
-      let imgSrc;
-      switch (recipe.img_name) {
-        case "assets/images/sushi_rolls.jpg":
-          imgSrc = sushiRollsImg;
-          break;
-        case "assets/images/ramen.jpg":
-          imgSrc = ramenImg;
-          break;
-        case "assets/images/tempura.jpg":
-          imgSrc = tempuraImg;
-          break;
-        case "assets/images/miso_soup.jpg":
-          imgSrc = misoSoupImg;
-          break;
-        case "assets/images/okonomiyaki.jpg":
-          imgSrc = okonomiyakiImg;
-          break;
-        case "assets/images/yakitori.jpg":
-          imgSrc = yakitoriImg;
-          break;
-        case "assets/images/takoyaki.jpg":
-          imgSrc = takoyakiImg;
-          break;
-        case "assets/images/mochi.jpg":
-          imgSrc = mochiImg;
-          break;
-        default:
-          imgSrc = ""; // Optional: Add a placeholder image
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/recipes");
+        if (!response.ok) {
+          throw new Error("Failed to fetch recipes");
+        }
+        const data = await response.json();
+        setRecipes(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
       }
-      return { ...recipe, imgSrc };
-    });
+    };
 
-    setRecipes(updatedRecipes);
+    fetchRecipes();
   }, []);
+
+  // Function to handle adding a new recipe dynamically
+  const handleRecipeAdded = (newRecipe) => {
+    setRecipes([...recipes, newRecipe]); // Add the new recipe to the state
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
     <div className="recipe-book">
@@ -59,15 +41,22 @@ const RecipeList = () => {
       <div className="recipe-list">
         {recipes.map((recipe) => (
           <div className="recipe-item" key={recipe._id}>
-            <img src={recipe.imgSrc} alt={recipe.name} />
+            <img
+              src={
+                recipe.main_image.startsWith("http") || recipe.main_image.startsWith("data:image")
+                  ? recipe.main_image // Use the URL as is for HTTP or data:image
+                  : `http://localhost:3001${recipe.main_image}` // Prepend localhost for server-hosted images
+            }
+            alt={recipe.name}
+            className="recipe-item-image"
+            />
             <div className="recipe-details">
               <h3>{recipe.name}</h3>
-              <p><strong>Description:</strong> {recipe.description}</p>
+              <p>{recipe.description}</p>
               <p><strong>Prep Time:</strong> {recipe.prep_time}</p>
               <p><strong>Cooking Time:</strong> {recipe.cooking_time}</p>
-              <p><strong>Servings:</strong> {recipe.servings}</p>
-              <p><strong>Ingredients:</strong></p>
               <ul>
+                <strong>Ingredients:</strong>
                 {recipe.ingredients.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
                 ))}
@@ -76,6 +65,8 @@ const RecipeList = () => {
           </div>
         ))}
       </div>
+      <hr style={{ margin: "40px 0", border: "1px solid #ddd" }} />
+      <AddRecipeForm onRecipeAdded={handleRecipeAdded} />
     </div>
   );
 };
