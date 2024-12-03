@@ -13,9 +13,6 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Exclude _id from formData
-    const { _id, ...dataToSend } = formData;
-
     // Validate main_image is either a valid URL or a relative path
     const isValidUrl = /^https?:\/\/[^\s]+$/i.test(formData.main_image);
     const isValidRelativePath = /^\/[^\s]+(\.jpg|\.png|\.jpeg)$/i.test(formData.main_image);
@@ -26,6 +23,7 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
     }
 
     try {
+      const { _id, ...dataToSend } = formData;
       const response = await fetch(`https://japanese-recipes-server.onrender.com/api/recipes/${recipe._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -117,7 +115,7 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
 
       <label htmlFor="main_image">Main Image URL:</label>
       <input
-        type="url"
+        type="text"
         id="main_image"
         name="main_image"
         value={formData.main_image}
