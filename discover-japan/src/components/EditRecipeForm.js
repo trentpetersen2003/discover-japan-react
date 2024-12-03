@@ -13,6 +13,12 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Optional: Client-side validation
+    if (!/^https?:\/\/[^\s]+$/i.test(formData.main_image)) {
+      setError("Main image must be a valid URL.");
+      return;
+    }
+
     try {
       const response = await fetch(`https://japanese-recipes-server.onrender.com/api/recipes/${recipe._id}`, {
         method: "PUT",
@@ -21,43 +27,98 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
       });
 
       const result = await response.json();
-      if (result.success) {
+      if (response.ok && result.success) {
         setSuccess(true);
         setError("");
-        onRecipeEdited(result.recipe); // Notify parent component
+        onRecipeEdited(result.recipe); // Notify parent component with the updated recipe
       } else {
         setSuccess(false);
-        setError(result.message);
+        setError(result.message || "Failed to update the recipe.");
       }
     } catch (err) {
       setSuccess(false);
       setError("Failed to update the recipe. Please try again.");
+      console.error("Error updating recipe:", err);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="edit-recipe-form">
       <h3>Edit Recipe</h3>
+      <label htmlFor="name">Name:</label>
       <input
         type="text"
+        id="name"
         name="name"
         value={formData.name}
         onChange={handleChange}
         required
       />
+
+      <label htmlFor="size">Size:</label>
       <input
         type="text"
+        id="size"
         name="size"
         value={formData.size}
         onChange={handleChange}
         required
       />
+
+      <label htmlFor="ingredients">Ingredients (comma-separated):</label>
+      <input
+        type="text"
+        id="ingredients"
+        name="ingredients"
+        value={formData.ingredients.join(", ")} // Convert array to a string for display
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            ingredients: e.target.value.split(",").map((item) => item.trim()), // Convert back to an array
+          })
+        }
+        required
+      />
+
+      <label htmlFor="prep_time">Prep Time:</label>
+      <input
+        type="text"
+        id="prep_time"
+        name="prep_time"
+        value={formData.prep_time}
+        onChange={handleChange}
+        required
+      />
+
+      <label htmlFor="cooking_time">Cooking Time:</label>
+      <input
+        type="text"
+        id="cooking_time"
+        name="cooking_time"
+        value={formData.cooking_time}
+        onChange={handleChange}
+        required
+      />
+
+      <label htmlFor="description">Description:</label>
       <textarea
+        id="description"
         name="description"
         value={formData.description}
         onChange={handleChange}
         required
       ></textarea>
+
+      <label htmlFor="main_image">Main Image URL:</label>
+      <input
+        type="url"
+        id="main_image"
+        name="main_image"
+        value={formData.main_image}
+        onChange={handleChange}
+        required
+      />
+
       <button type="submit">Save Changes</button>
       {success && <p style={{ color: "green" }}>Recipe updated successfully!</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
