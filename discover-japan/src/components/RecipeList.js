@@ -44,7 +44,7 @@ const RecipeList = () => {
   const handleDelete = async (id) => {
     console.log("Delete button clicked for recipe ID:", id); // Debug log
     try {
-      const response = await fetch(`https://japanese-recipes-server.onrender.com/api/recipes${id}`, {
+      const response = await fetch(`https://japanese-recipes-server.onrender.com/api/recipes/${id}`, {
         method: "DELETE",
       });
   
