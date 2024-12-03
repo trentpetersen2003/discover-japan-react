@@ -13,10 +13,16 @@ const EditRecipeForm = ({ recipe, onRecipeEdited }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Optional: Client-side validation
-    if (!/^https?:\/\/[^\s]+$/i.test(formData.main_image)) {
-      setError("Main image must be a valid URL.");
-      return;
+    // Exclude _id from formData
+    const { _id, ...dataToSend } = formData;
+
+    // Validate main_image is either a valid URL or a relative path
+    const isValidUrl = /^https?:\/\/[^\s]+$/i.test(formData.main_image);
+    const isValidRelativePath = /^\/[^\s]+(\.jpg|\.png|\.jpeg)$/i.test(formData.main_image);
+
+    if (!isValidUrl && !isValidRelativePath) {
+        setError("Main image must be a valid URL or a relative path (e.g., /images/sushi.jpg).");
+        return;
     }
 
     try {
