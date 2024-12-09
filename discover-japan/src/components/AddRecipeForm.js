@@ -8,15 +8,19 @@ const AddRecipeForm = ({ onRecipeAdded }) => {
     prep_time: "",
     cooking_time: "",
     description: "",
-    main_image: "",
+    main_image: null, // Changed to handle file uploads
   });
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState("");
 
   // Handle form input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Handle form submission
@@ -24,17 +28,31 @@ const AddRecipeForm = ({ onRecipeAdded }) => {
     e.preventDefault();
 
     try {
+      // Create FormData object for the request
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("size", formData.size);
+      data.append("ingredients", formData.ingredients);
+      data.append("prep_time", formData.prep_time);
+      data.append("cooking_time", formData.cooking_time);
+      data.append("description", formData.description);
+      if (formData.main_image) {
+        data.append("main_image", formData.main_image);
+      }
+
+      console.log("Submitting recipe:", formData); // Debug log
+
       // Send POST request to the server
-      const response = await fetch("https://japanese-recipes-server.onrender.com/api/recipes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          ingredients: formData.ingredients.split(",").map((item) => item.trim()), // Convert ingredients to array
-        }),
-      });
+      const response = await fetch(
+        "https://japanese-recipes-server.onrender.com/api/recipes",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       const result = await response.json();
+      console.log("Server response:", result); // Debug log
 
       if (result.success) {
         setSuccess(true);
@@ -47,13 +65,14 @@ const AddRecipeForm = ({ onRecipeAdded }) => {
           prep_time: "",
           cooking_time: "",
           description: "",
-          main_image: "",
+          main_image: null,
         }); // Clear the form
       } else {
         setSuccess(false);
         setError(result.message);
       }
     } catch (err) {
+      console.error("Error adding recipe:", err); // Debug log
       setSuccess(false);
       setError("Failed to add the recipe. Please try again.");
     }
@@ -129,13 +148,13 @@ const AddRecipeForm = ({ onRecipeAdded }) => {
           ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="main_image">Main Image URL:</label>
+          <label htmlFor="main_image">Main Image:</label>
           <input
-            type="url"
+            type="file"
             id="main_image"
             name="main_image"
-            value={formData.main_image}
             onChange={handleChange}
+            accept="image/*"
             required
           />
         </div>
